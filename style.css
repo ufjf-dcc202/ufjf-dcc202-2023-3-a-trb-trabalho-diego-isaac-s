@@ -1,0 +1,49 @@
+body{
+  background-color: color #ff9586;
+}
+
+main{
+  justify-content: center;
+  align-items: center;
+}
+
+#tabs {
+  top: 50%;
+  margin-top: -400px;
+  display: grid;
+  border: 2px black solid;
+  width: 36%;
+  height: 800px;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabuleiro{
+  display: grid;
+  border: 1px green solid;
+  width: 500px;
+  height: 350px;
+  margin: auto;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.coluna{
+  border: 1px orangered solid;
+  width: 140px;
+  height: 340px;
+  margin: 5px 50px 5px 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.dado{
+  border: 1px blue solid;
+  width: 135px;
+  height: 110px;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+}
