@@ -1,0 +1,46 @@
+#tabs{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tabuleiro{
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 70px);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+
+.dado{
+  width: 40px;
+  height: 40px;
+  border: 2px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 25px;
+  padding: 5px;
+  background-color: #cecece;
+}
+
+.val{
+  display: grid;
+  grid-template-columns: repeat(3, 70px);
+}
+
+#btColunas{
+  display: grid;
+  grid-template-columns: repeat(3, 70px);
+}
+
+.btCol{
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  margin: 5px;
+  cursor: pointer;
+}
