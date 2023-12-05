@@ -1,5 +1,5 @@
 body{
-  background-image: url("imagens/background-floresta.jpg");
+  background-image: url("imagens/25726625_2203_w026_n002_1497b_p1_1497.jpg");
   background-size: cover;
 }
 
@@ -22,11 +22,11 @@ body{
 .dado{
   width: 90px;
   height: 60px;
-  border: 3px solid black;
+  border: 3px solid rgb(164, 164, 164);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: 25px;
+  font-size: 40px;
   padding: 5px;
   background-color: #323232;
   margin-top: 5px;
@@ -34,6 +34,7 @@ body{
   margin-right: 10px;
   border-radius: 7px;
   color: antiquewhite;
+  font-family: fonteNum;
 }
 
 .cxVal{
@@ -42,11 +43,16 @@ body{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: 25px;
+  font-size: 40px;
   padding: 5px;
   margin-top: 5px;
   margin-left: 10px;
   margin-right: 10px;
+  font-family: fonteNum;
+  color: white;
+  background-color: rgb(71, 78, 101);
+  opacity: 0.7;
+  border-radius: 100%;
 }
 
 .btCol{
@@ -67,7 +73,7 @@ body{
   float: left;
   justify-content: center;
   align-items: center;
-  border: 3px black solid;
+  border: 3px antiquewhite solid;
   margin-top: 43%;
   left: 90px;
   width: 300px;
@@ -75,4 +81,67 @@ body{
   background-color: #323232;
   color: antiquewhite;
   font-size: 40px;
+  font-family: fonteNum;
+}
+
+.imagemJogador{
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  width: 300px;
+  height: 400px;
+}
+
+#imgPlayer{
+  float: left;
+  left: 90px;
+}
+
+#imgBot{
+  float: right;
+  right: 90px;
+}
+
+@font-face{
+  font-family: fonteNum;
+  src: url(./fontes/MerriweatherSans-VariableFont_wght.ttf);
+}
+
+@font-face{
+  font-family: fonteBot;
+  src: url(./fontes/BlackOpsOne-Regular.ttf);
+}
+
+@font-face{
+  font-family: fontePlayer;
+  src: url(./fontes/RubikBubbles-Regular.ttf)
+}
+
+#imag{
+  width: 350px;
+  height: 350px;
+  opacity: 0.8;
+}
+
+.nome{
+  display: flex;
+  position: absolute;
+  bottom: -70px;
+  color: antiquewhite;
+  background-color: black;
+  padding: 5px;
+  border-radius: 30px;
+  opacity: 0.7;
+}
+
+#nomePlayer{
+  font-family: fontePlayer;
+  font-size: 50px;
+}
+
+#nomeBot{
+  font-family: fonteBot;
+  font-size: 50px;
 }
