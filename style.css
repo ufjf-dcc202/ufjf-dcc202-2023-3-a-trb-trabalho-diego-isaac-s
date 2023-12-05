@@ -14,32 +14,39 @@ body{
   display: grid;
   grid-auto-flow: row;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 70px);
+  grid-template-rows: 100px 100px 100px 100px;
   margin-top: 20px;
-  margin-bottom: 10px;
 }
 
 
 .dado{
-  width: 40px;
-  height: 40px;
-  border: 2px solid black;
+  width: 90px;
+  height: 60px;
+  border: 3px solid black;
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-size: 25px;
   padding: 5px;
-  background-color: #cecece;
+  background-color: #323232;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 7px;
+  color: antiquewhite;
 }
 
-.val{
-  display: grid;
-  grid-template-columns: repeat(3, 70px);
-}
-
-#btColunas{
-  display: grid;
-  grid-template-columns: repeat(3, 70px);
+.cxVal{
+  width: 93px;
+  height: 63px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 25px;
+  padding: 5px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .btCol{
@@ -48,4 +55,24 @@ body{
   font-size: 18px;
   margin: 5px;
   cursor: pointer;
+}
+
+.colunaP{
+  cursor: pointer;
+}
+
+#proxDadoSec{
+  display: flex;
+  position: absolute;
+  float: left;
+  justify-content: center;
+  align-items: center;
+  border: 3px black solid;
+  margin-top: 43%;
+  left: 90px;
+  width: 300px;
+  height: 100px;
+  background-color: #323232;
+  color: antiquewhite;
+  font-size: 40px;
 }
