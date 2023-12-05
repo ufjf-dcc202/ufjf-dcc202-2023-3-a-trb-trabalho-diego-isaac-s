@@ -1,3 +1,8 @@
+body{
+  background-image: url("imagens/background-floresta.jpg");
+  background-size: cover;
+}
+
 #tabs{
   display: flex;
   flex-direction: column;
