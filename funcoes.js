@@ -8,13 +8,12 @@ const imagensDados = [
 ]
 
 //Retorna um número aleatório entre 1 e 6
-function adicionaDado(){
+function rolarDado(){
     return Math.floor(Math.random() * 6) + 1;
 }
-
 // Retorna o caminho da imagem do dado
 function imagemDado(indice){
-    return imagensDados[indice];
+    return spritesDados[indice];
 }
 
 // atualiza o valor do dado no HTML
@@ -80,4 +79,10 @@ function somaColuna(coluna){
         soma += coluna[i] * quantasVezesApareceNaColuna(coluna, coluna[i]);
     }
     return soma;
+}
+
+// Atualiza a soma no HTML
+function atualizaSoma(indice, somaTexto, colunas){
+    let soma = somaColuna(colunas[indice]);
+    somaTexto[indice].textContent = soma;
 }
