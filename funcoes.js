@@ -72,3 +72,12 @@ function quantasVezesApareceNaColuna(coluna, valor){
     }
     return vezes;
 }
+
+// Retorna a soma de uma coluna
+function somaColuna(coluna){
+    let soma = 0;
+    for(let i = 0; i < 3; i++){
+        soma += coluna[i] * quantasVezesApareceNaColuna(coluna, coluna[i]);
+    }
+    return soma;
+}
