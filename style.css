@@ -14,7 +14,7 @@ body{
   display: grid;
   grid-auto-flow: row;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 100px 100px 100px 100px;
+  grid-template-rows: 90px 90px 90px 90px;
   margin-top: 20px;
 }
 
@@ -50,9 +50,6 @@ body{
   margin-right: 10px;
   font-family: fonteNum;
   color: white;
-  background-color: rgb(71, 78, 101);
-  opacity: 0.7;
-  border-radius: 100%;
 }
 
 .btCol{

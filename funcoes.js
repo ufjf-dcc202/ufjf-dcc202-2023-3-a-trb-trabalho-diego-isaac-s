@@ -1,19 +1,42 @@
-const imagensDados = [
+const imgDados = [
     'imagens/dado1.jpg',
     'imagens/dado2.jpg',
     'imagens/dado3.jpg',
     'imagens/dado4.jpg',
     'imagens/dado5.jpg',
-    'imagens/dado6.jpg'
+    'imagens/dado6.jpg',
 ]
 
 //Retorna um número aleatório entre 1 e 6
 function rolarDado(){
     return Math.floor(Math.random() * 6) + 1;
 }
+
+function adicionaValor(tabuleiro, coluna, valor, caixas){
+    if(coluna < 0 || coluna > 2) {
+        console.log("Coluna inválida");
+        return false; // Se a coluna for inválida, retorna false
+    }
+    let linha = 0;
+    while(tabuleiro[coluna][linha] != 0 && linha < 3){  //confere se a linha X da coluna selecionada
+        linha++;                                        //é diferente de zero e, se for, soma 1 ao numero
+    }                                                   //da linha para não adicionar onde já tem dado.
+    if(linha <= 2 && linha >= 0){
+        tabuleiro[coluna][linha] = valor;       
+        let k = coluna * 3 + linha;
+        if(caixas[k].classList.contains("animarRetirada")){
+            caixas[k].classList.remove("animarRetirada");
+        }
+        caixas[k].classList.add("animar");	
+        return true;
+    }
+    console.log("Coluna cheia");
+    return false;
+}
+
 // Retorna o caminho da imagem do dado
-function imagemDado(indice){
-    return spritesDados[indice];
+function imagemDado(i){
+    return imgDados[i];
 }
 
 // atualiza o valor do dado no HTML
