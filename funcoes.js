@@ -137,7 +137,7 @@ let imagensDados = [
     for(let i = 0; i < 3; i++){
       player = player + soma(tabPlayer[i]);
       bot = bot + soma(tabBot[i]);
-    }
+    }                                                   //ALERTA: imagens temporárias
     if(player > bot){
       tabs.src = 'imagens/youWin.png';
     }else{
