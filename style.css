@@ -101,6 +101,22 @@ body{
   right: 90px;
 }
 
+#posicaoReiniciar{
+  float: right;
+  right: 190px;
+  position: absolute;
+  margin-top: 45%;
+  width: 100px;
+  height: 40px;
+}
+
+#botaoReiniciar{
+  background-color:#323232;
+  color:antiquewhite;
+  width: 100px;
+  height: 40px;
+}
+
 @font-face{
   font-family: fonteNum;
   src: url(./fontes/MerriweatherSans-VariableFont_wght.ttf);
