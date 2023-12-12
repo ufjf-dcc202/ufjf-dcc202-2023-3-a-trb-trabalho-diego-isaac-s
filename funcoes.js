@@ -1,111 +1,150 @@
-const imgDados = [
-    'imagens/dado1.jpg',
-    'imagens/dado2.jpg',
-    'imagens/dado3.jpg',
-    'imagens/dado4.jpg',
-    'imagens/dado5.jpg',
-    'imagens/dado6.jpg',
-]
+//ALERTA: Pelo fato de ainda estar faltando fazer o main.js, as funções daqui ainda não são definitivas!
 
-//Retorna um número aleatório entre 1 e 6
-function rolarDado(){
-    return Math.floor(Math.random() * 6) + 1;
-}
 
-function adicionaValor(tabuleiro, coluna, valor, caixas){
-    if(coluna < 0 || coluna > 2) {
-        console.log("Coluna inválida");
-        return false; // Se a coluna for inválida, retorna false
-    }
+//imagens dos dados
+
+let imagensDados = [
+    'dados/dado1.png',
+    'dados/dado2.png',
+    'dados/dado3.png',
+    'dados/dado4.png',
+    'dados/dado5.png',
+    'dados/dado6.png'
+  ]
+  
+  
+  //rola dado
+  
+  export function rolaDado(){
+    return Math.floor(Math.random * 6) + 1;
+  }
+  
+  
+  //img dado
+  
+  export function imgDado(numero){
+    return imagensDados[numero];
+  }
+  
+  
+  //valor do novo dado
+  
+  export function novoDado(proxDado){
+    let valorDado = rolaDado();
+    let dadoimg = valorDado - 1;
+    proxDado.src = imgDado(dadoimg);
+    return valorDado;
+  }
+  
+  
+  //adiciona dado
+  
+  export function adicionaDado(tabuleiro, coluna, valor){
     let linha = 0;
-    while(tabuleiro[coluna][linha] != 0 && linha < 3){  //confere se a linha X da coluna selecionada
-        linha++;                                        //é diferente de zero e, se for, soma 1 ao numero
-    }                                                   //da linha para não adicionar onde já tem dado.
-    if(linha <= 2 && linha >= 0){
-        tabuleiro[coluna][linha] = valor;       
-        let k = coluna * 3 + linha;
-        if(caixas[k].classList.contains("animarRetirada")){
-            caixas[k].classList.remove("animarRetirada");
-        }
-        caixas[k].classList.add("animar");	
-        return true;
-    }
-    console.log("Coluna cheia");
-    return false;
-}
-
-// Retorna o caminho da imagem do dado
-function imagemDado(i){
-    return imgDados[i];
-}
-
-// atualiza o valor do dado no HTML
-function atualizaDado(dadoTexto){
-    let dadoValor = adicionaDado();
-    dadoTexto.src = imagemDado(Valor - 1);
-    return Valor;
-}
-
-// Imprime o tabuleiro no HTML
-function imprimeTabuleiro(tabuleiro, colunas){
-    for(let i = 0; i < 3; i++){
-        for(let j = 0; j < 3; j++){
-            let k = i * 3 + j;
-            if(colunas[i][j] == 0){
-                tabuleiro[k].src = "";
-            } else {
-                tabuleiro[k].src = imagemDado(colunas[i][j] - 1);
-            }
-        }
-    }
-}
-
-// Adiciona um valor na coluna do tabuleiro
-function adicionaValor(tabuleiro, coluna, valor, caixa){
-    if(coluna < 0 || coluna > 2) {
-        console.log("Coluna inválida");
-        return false; // Se a coluna for inválida, retorna false
-    }
-    let linha = 0;
-    while(tabuleiro[coluna][linha] != 0 && linha < 3){
-        linha++;
+    while(tabuleiro[coluna, linha] != 0 && linha < 3){
+      linha++;
     }
     if(linha <= 2 && linha >= 0){
-        tabuleiro[coluna][linha] = valor;
-        caixa[coluna * 3 + linha].classList.add("colocar");
-        setTimeout(() => reiniciaAnimacaoColocar(caixa[coluna * 3 + linha]), 500);
-        return true;
+      tabuleiro[coluna, linha] = valor;
     }
-    console.log("Coluna cheia");
+    console.log("Coluna cheia!");
     return false;
-}
-
-function reiniciaAnimacaoColocar(caixa){
-    caixa.classList.remove("colocar");
-}
-
-// Retorna quantas vezes um valor aparece na coluna
-function quantasVezesApareceNaColuna(coluna, valor){
-    let vezes = 0;
+  }
+  
+  
+  //numero repete
+  
+  export function numeroRepete(coluna, valor){
+    let rep = 0;
     for(let i = 0; i < 3; i++){
-        if(coluna[i] == valor){
-            vezes++;
+      if(coluna[i] == valor){
+        rep++
+      }
+    }
+    return rep;
+  }
+  
+  
+  //soma
+  
+  export function soma(coluna){
+    let s = 0;
+    for(let i = 0; i < 3; i++){
+      s = s + coluna[i] * numeroRepete(coluna, coluna[i]);
+    }
+    return s;
+  }
+  
+  
+  //imprime a soma
+  
+  export function imprimeSoma(coluna, impSoma){
+    let soma = soma(coluna);
+    impSoma.textContent = soma;
+  }
+  
+  
+  //limpa numero de coluna
+  
+  export function limpaNumeroDeColuna(tabuleiro, coluna, valor){
+    for(let linha = 0; linha < 3; linha++){
+      if(tabuleiro[coluna][linha] == valor){
+        tabuleiro[coluna][linha] = 0;
+      }
+    }
+    for(let l = 0; l < 2; l++){
+      if(tabuleiro[coluna][l] == 0){
+        tabuleiro[coluna][l] = tabuleiro[coluna][l+1];
+        tabuleiro[coluna][l+1] = 0;
+      }
+    }
+  }
+  
+  
+  //retorna tabuleiro
+  
+  export function retornaTabuleiro(tabuleiro){
+    for(let i = 0; i < 3; i++){
+      for(let j = 0; j < 3; j++){
+        let d = tabuleiro[i][j].content;
+        if(d != 0){
+          tabuleiro[i][j].src = imagensDados[d];
         }
+      }
     }
-    return vezes;
-}
-
-// Retorna a soma de uma coluna
-function somaColuna(coluna){
-    let soma = 0;
+  }
+  
+  
+  //termina jogo
+  
+  export function terminaJogo(tabuleiro){
     for(let i = 0; i < 3; i++){
-        soma += coluna[i] * quantasVezesApareceNaColuna(coluna, coluna[i]);
+      for(let j = 0; j < 3; j++){
+        if(tabuleiro[i][j] == 0){
+          return false;
+        }
+      }
     }
-    return soma;
-}
-
-// Atualiza a soma no HTML
-function atualizaSoma(indice, somaTexto, colunas){
-    let soma = somaColuna(colunas[indice]);
-    somaTexto[indice].textContent = soma;
-}
+    return true;
+  }
+  
+  
+  //vencedor
+  
+  export function vencedor(tabs, tabBot, tabPlayer){
+    let player = 0;
+    let bot = 0;
+    for(let i = 0; i < 3; i++){
+      player = player + soma(tabPlayer[i]);
+      bot = bot + soma(tabBot[i]);
+    }
+    if(player > bot){
+      tabs.src = 'imagens/youWin.png';
+    }else{
+      if(bot > player){
+        tabs.src = 'imagens/youLose.png';
+      }else{
+        tabs.src = 'imagens/draw.png'
+      }
+    }
+  }
