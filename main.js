@@ -68,3 +68,11 @@ function jogar(colunaSelecionada) {
       alert('Coluna cheia!');
     }
   }
+
+//Recebe os elementos 
+document.getElementById('botaoReiniciar').addEventListener('click', reiniciarJogo);
+document.getElementById('colunaP1').addEventListener('click', () => jogar(0));
+document.getElementById('colunaP2').addEventListener('click', () => jogar(1));
+document.getElementById('colunaP3').addEventListener('click', () => jogar(2));
+
+atualizarInterface();
