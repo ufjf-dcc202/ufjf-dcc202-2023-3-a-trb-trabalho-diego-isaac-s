@@ -132,10 +132,17 @@ body{
   src: url(./fontes/RubikBubbles-Regular.ttf)
 }
 
-#imag{
+.imag{
   width: 350px;
   height: 350px;
+}
+
+#imgB{
   opacity: 0.8;
+}
+
+#imgP{
+  opacity: 0.9;
 }
 
 .nome{
