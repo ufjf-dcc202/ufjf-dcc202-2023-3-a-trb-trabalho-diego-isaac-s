@@ -14,14 +14,17 @@ import{
     vencedor   
 } from './funcoes.js';
 
-let botColuna1 = 0, botColuna2 = 0, botColuna3 = 0;
-let playerColuna1 = 0, playerColuna2 = 0, playerColuna3 = 0;
+// Variáveis para representar o estado do jogo
+let jogadorAtual = 'Player';
+let proxDado = document.querySelector('#proxDadoSec p');
+let tabuleiroBot = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+let tabuleiroPlayer = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 
 //reinicia o jogo
 
 function reiniciarJogo() {
-    botColuna1 = botColuna2 = botColuna3 = 0;
-    playerColuna1 = playerColuna2 = playerColuna3 = 0;
+    tabuleiroBot = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    tabuleiroPlayer = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
     jogadorAtual = 'Player';
     atualizarInterface();
 }
@@ -29,17 +32,39 @@ function reiniciarJogo() {
 //atualiza a interface
 
 function atualizarInterface() {
-    retornaTabuleiro(botColuna1, botColuna2, botColuna3);
-    retornaTabuleiro(playerColuna1, playerColuna2, playerColuna3);
+    retornaTabuleiro(tabuleiroBot);
+    retornaTabuleiro(tabuleiroPlayer);
   
-    document.getElementById('valoresBotColuna1').textContent = soma([botColuna1, botColuna2, botColuna3]);
-    document.getElementById('valoresBotColuna2').textContent = soma([botColuna1, botColuna2, botColuna3]);
-    document.getElementById('valoresBotColuna3').textContent = soma([botColuna1, botColuna2, botColuna3]);
+    document.getElementById('valoresBotCol1').textContent = soma(tabuleiroBot[0]);
+    document.getElementById('valoresBotCol2').textContent = soma(tabuleiroBot[1]);
+    document.getElementById('valoresBotCol3').textContent = soma(tabuleiroBot[2]);
   
-    document.getElementById('valoresPlayerColuna1').textContent = soma([playerColuna1, playerColuna2, playerColuna3]);
-    document.getElementById('valoresPlayerColuna2').textContent = soma([playerColuna1, playerColuna2, playerColuna3]);
-    document.getElementById('valoresPlayerColuna3').textContent = soma([playerColuna1, playerColuna2, playerColuna3]);
+    document.getElementById('valoresPlayerCol1').textContent = soma(tabuleiroPlayer[0]);
+    document.getElementById('valoresPlayerCol2').textContent = soma(tabuleiroPlayer[1]);
+    document.getElementById('valoresPlayerCol3').textContent = soma(tabuleiroPlayer[2]);
   
-    proxDado.textContent = novoDado(document.querySelector('.dado'));
+    proxDado.textContent = novoDado();
     document.getElementById('nomePlayer').textContent = jogadorAtual;
-}  
+}
+
+//jogar e troca de play para bot
+
+function jogar(colunaSelecionada) {
+    const valorDado = parseInt(proxDado.textContent);
+  
+    if (adicionaDado(tabuleiroAtual, colunaSelecionada, valorDado)) {
+      limpaNumeroDeColuna(tabuleiroAtual, colunaSelecionada, valorDado);
+      imprimeSoma(tabuleiroAtual[colunaSelecionada], document.getElementById(`valores${jogadorAtual}Col${colunaSelecionada + 1}`));
+  
+      if (terminaJogo(tabuleiroAtual)) {
+        vencedor(document.getElementById('tabs'), tabuleiroBot, tabuleiroPlayer);
+        alert(`${jogadorAtual} venceu!`);
+        reiniciarJogo();
+      } else {
+        jogadorAtual = jogadorAtual === 'Player' ? 'BOT1' : 'Player';
+        atualizarInterface();
+      }
+    } else {
+      alert('Coluna cheia!');
+    }
+  }
