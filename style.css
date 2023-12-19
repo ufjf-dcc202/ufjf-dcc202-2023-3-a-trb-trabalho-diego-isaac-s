@@ -43,6 +43,11 @@ body{
   font-family: fonteNum;
 }
 
+.dado_img {
+  max-width: 60px;
+  width: 100%;
+}
+
 .cxVal{
   width: 93px;
   height: 63px;
