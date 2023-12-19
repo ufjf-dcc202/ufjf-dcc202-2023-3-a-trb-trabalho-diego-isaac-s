@@ -19,10 +19,11 @@ body{
 }
 
 #imgVencedor{
-  position: relative;
-  height: 70px;
+  position: absolute;
+  height: 90px;
   width: auto;
-  float: none;
+  left: 39.48%;
+  margin-top: -4%;
 }
 
 .dado{
