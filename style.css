@@ -18,6 +18,12 @@ body{
   margin-top: 20px;
 }
 
+#imgVencedor{
+  position: relative;
+  height: 70px;
+  width: auto;
+  float: none;
+}
 
 .dado{
   width: 90px;
