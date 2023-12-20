@@ -83,7 +83,6 @@ function jogarBot(){
   atualizarInterface();
   if(terminaJogo(tabuleiroBot)){
     vencedor(imgFinal, tabuleiroBot, tabuleiroPlayer);
-    reiniciarJogo();
     return;
   }
   dado = rolaDado();
