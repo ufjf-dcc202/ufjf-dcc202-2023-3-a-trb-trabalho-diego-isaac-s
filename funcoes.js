@@ -29,7 +29,6 @@ let imagensDados = [
   export function novoDado(proxDado){
     let valorDado = rolaDado();
     let dadoimg = valorDado - 1;
-    // proxDado.src = imgDado(dadoimg);
     return valorDado;
   }
   
@@ -37,9 +36,6 @@ let imagensDados = [
   //adiciona dado
   
   export function adicionaDado(tabuleiro, coluna, valor){
-    // while(tabuleiro[coluna, linha] != 0 && linha < 3){
-    //   linha++;
-    // }
     for(let i = 0; i < 3; i++){
       if(tabuleiro[coluna][i] === 0){
         tabuleiro[coluna][i] = valor;
@@ -47,11 +43,6 @@ let imagensDados = [
         return true;
       }
     }
-    // if(linha <= 2 && linha >= 0){
-    //   tabuleiro[coluna, linha] = valor;
-    // }
-    // console.log("Coluna cheia!");
-    // return false;
   }
   
   

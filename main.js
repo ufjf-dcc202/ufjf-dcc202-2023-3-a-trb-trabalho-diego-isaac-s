@@ -54,6 +54,7 @@ function atualizarInterface() {
     document.getElementById('valoresPlayerCol3').textContent = soma(tabuleiroPlayer[2]);
 }
 
+//vez do jogador
 function jogadaJogador(colunaSelecionada){
   let valorDado = dado;
   if(adicionaDado(tabuleiroPlayer, colunaSelecionada, valorDado)){
@@ -69,6 +70,8 @@ function jogadaJogador(colunaSelecionada){
     }
   }
 }
+
+//vez do bot
 function jogarBot(){
   let coluna = Math.floor(Math.random() * 3);
   let valorDado = dado;
