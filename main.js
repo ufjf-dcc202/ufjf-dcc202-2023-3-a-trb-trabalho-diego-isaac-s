@@ -34,7 +34,6 @@ const imgFinal = document.querySelector("#imgVencedor");
 function reiniciarJogo() {
     tabuleiroBot = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
     tabuleiroPlayer = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-    let jogadorAtual = 'Player';
     imgFinal.src = '';
     atualizarInterface();
 }

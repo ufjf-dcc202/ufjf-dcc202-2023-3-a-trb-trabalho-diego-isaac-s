@@ -19,19 +19,8 @@ let imagensDados = [
   //img dado
   
   export function imgDado(numero){
-    console.log(imagensDados[numero-1]);
     return imagensDados[numero-1];
   }
-  
-  
-  //valor do novo dado
-  
-  export function novoDado(proxDado){
-    let valorDado = rolaDado();
-    let dadoimg = valorDado - 1;
-    return valorDado;
-  }
-  
   
   //adiciona dado
   
