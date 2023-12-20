@@ -34,7 +34,8 @@ const imgFinal = document.querySelector("#imgVencedor");
 function reiniciarJogo() {
     tabuleiroBot = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
     tabuleiroPlayer = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-    jogadorAtual = 'Player';
+    let jogadorAtual = 'Player';
+    imgFinal.src = '';
     atualizarInterface();
 }
 
@@ -63,7 +64,6 @@ function jogadaJogador(colunaSelecionada){
     dado = rolaDado();
     if(terminaJogo(tabuleiroPlayer)){
       vencedor(imgFinal, tabuleiroBot, tabuleiroPlayer);
-      reiniciarJogo();
     } else {
       jogarBot();
     }
@@ -92,9 +92,9 @@ function jogarBot(){
 
 
 //Recebe os elementos 
-document.getElementById('botaoReiniciar').addEventListener('click', reiniciarJogo);
-document.getElementById('colunaP1').addEventListener('click', () => jogadaJogador(0));
-document.getElementById('colunaP2').addEventListener('click', () => jogadaJogador(1));
-document.getElementById('colunaP3').addEventListener('click', () => jogadaJogador(2));
+document.querySelector('#botaoReiniciar').addEventListener('click', reiniciarJogo);
+document.querySelector('#colunaP1').addEventListener('click', () => jogadaJogador(0));
+document.querySelector('#colunaP2').addEventListener('click', () => jogadaJogador(1));
+document.querySelector('#colunaP3').addEventListener('click', () => jogadaJogador(2));
 
 atualizarInterface();
