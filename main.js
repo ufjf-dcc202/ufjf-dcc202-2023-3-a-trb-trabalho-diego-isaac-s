@@ -3,9 +3,7 @@
 import {
   rolaDado,
   imgDado,
-  novoDado,
   adicionaDado,
-  numeroRepete,
   soma,
   imprimeSoma,
   limpaNumeroDeColuna,
@@ -15,8 +13,6 @@ import {
 } from './funcoes.js';
 
 // Variáveis para representar o estado do jogo
-let jogadorAtual = 'Player';
-let proxDado = document.querySelector('#proxDadoSec p');
 let tabuleiroBot = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 let tabuleiroPlayer = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 
@@ -25,6 +21,13 @@ let dado = rolaDado();
 console.log(dado);
 let linkImg = imgDado(dado);
 imagemDado.innerHTML = `<img class="dado_img" src = ${linkImg} />`;
+
+let somaDasColunas = document.querySelectorAll(".soma");
+let somaDasColunasBot = document.querySelectorAll(".somaBot");
+let imgsBot = document.querySelectorAll(".dadoBot");
+let imgsPlayer = document.querySelectorAll(".dadoPlayer");
+const imgFinal = document.querySelector("#imgVencedor");
+
 
 //reinicia o jogo
 
@@ -38,8 +41,8 @@ function reiniciarJogo() {
 //atualiza a interface
 
 function atualizarInterface() {
-    retornaTabuleiro(tabuleiroBot);
-    retornaTabuleiro(tabuleiroPlayer);
+    retornaTabuleiro(imgsBot, tabuleiroBot);
+    retornaTabuleiro(imgsPlayer, tabuleiroPlayer);
   
     document.getElementById('valoresBotCol1').textContent = soma(tabuleiroBot[0]);
     document.getElementById('valoresBotCol2').textContent = soma(tabuleiroBot[1]);
@@ -48,44 +51,50 @@ function atualizarInterface() {
     document.getElementById('valoresPlayerCol1').textContent = soma(tabuleiroPlayer[0]);
     document.getElementById('valoresPlayerCol2').textContent = soma(tabuleiroPlayer[1]);
     document.getElementById('valoresPlayerCol3').textContent = soma(tabuleiroPlayer[2]);
-  
-    // proxDado.textContent = novoDado();
-    document.getElementById('nomePlayer').textContent = jogadorAtual;
 }
 
-//jogar e troca de play para bot
-
-function jogar(colunaSelecionada) {
-    // const valorDado = parseInt(proxDado.textContent);
-    let tabuleiroAtual;
-    let valorDado = dado + 1;
-    if(jogadorAtual === 'Player'){
-      tabuleiroAtual = tabuleiroPlayer;
-    }
-    else{
-      tabuleiroAtual = tabuleiroBot;
-    }
-    if (adicionaDado(tabuleiroAtual, colunaSelecionada, valorDado)) {
-      limpaNumeroDeColuna(tabuleiroAtual, colunaSelecionada, valorDado);
-      imprimeSoma(tabuleiroAtual[colunaSelecionada], document.getElementById(`valores${jogadorAtual}Col${colunaSelecionada + 1}`));
-  
-      if (terminaJogo(tabuleiroAtual)) {
-        vencedor(document.getElementById('tabs'), tabuleiroBot, tabuleiroPlayer);
-        alert(`${jogadorAtual} venceu!`);
-        reiniciarJogo();
-      } else {
-        jogadorAtual = jogadorAtual === 'Player' ? 'BOT1' : 'Player';
-        atualizarInterface();
-      }
+function jogadaJogador(colunaSelecionada){
+  let valorDado = dado;
+  if(adicionaDado(tabuleiroPlayer, colunaSelecionada, valorDado)){
+    limpaNumeroDeColuna(tabuleiroBot, colunaSelecionada, valorDado);
+    imprimeSoma(tabuleiroPlayer[colunaSelecionada], somaDasColunas[colunaSelecionada]);
+    imprimeSoma(tabuleiroBot[colunaSelecionada], somaDasColunasBot[colunaSelecionada]);
+    atualizarInterface();
+    dado = rolaDado();
+    if(terminaJogo(tabuleiroPlayer)){
+      vencedor(imgFinal, tabuleiroBot, tabuleiroPlayer);
+      reiniciarJogo();
     } else {
-      alert('Coluna cheia!');
+      jogarBot();
     }
   }
+}
+function jogarBot(){
+  let coluna = Math.floor(Math.random() * 3);
+  let valorDado = dado;
+  while(!adicionaDado(tabuleiroBot, coluna, valorDado)){
+    coluna = Math.floor(Math.random() * 3);
+  }
+  limpaNumeroDeColuna(tabuleiroPlayer, coluna, valorDado);
+  imprimeSoma(tabuleiroBot[coluna], somaDasColunasBot[coluna]);
+  imprimeSoma(tabuleiroPlayer[coluna], somaDasColunas[coluna]);
+  atualizarInterface();
+  if(terminaJogo(tabuleiroBot)){
+    vencedor(imgFinal, tabuleiroBot, tabuleiroPlayer);
+    reiniciarJogo();
+    return;
+  }
+  dado = rolaDado();
+  let linkImg = imgDado(dado);
+  imagemDado.innerHTML = `<img class="dado_img" src = ${linkImg} />`;
+}
+
+
 
 //Recebe os elementos 
 document.getElementById('botaoReiniciar').addEventListener('click', reiniciarJogo);
-document.getElementById('colunaP1').addEventListener('click', () => jogar(0));
-document.getElementById('colunaP2').addEventListener('click', () => jogar(1));
-document.getElementById('colunaP3').addEventListener('click', () => jogar(2));
+document.getElementById('colunaP1').addEventListener('click', () => jogadaJogador(0));
+document.getElementById('colunaP2').addEventListener('click', () => jogadaJogador(1));
+document.getElementById('colunaP3').addEventListener('click', () => jogadaJogador(2));
 
 atualizarInterface();

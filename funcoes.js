@@ -2,7 +2,6 @@
 
 
 //imagens dos dados
-
 let imagensDados = [
     './dados/dado1.png',
     './dados/dado2.png',
@@ -16,15 +15,15 @@ let imagensDados = [
   //rola dado
   
   export function rolaDado(){
-    return Math.floor(Math.random() * 6);
+    return Math.floor(Math.random() * 6) + 1;
   }
   
   
   //img dado
   
   export function imgDado(numero){
-    console.log(imagensDados[numero]);
-    return imagensDados[numero];
+    console.log(imagensDados[numero-1]);
+    return imagensDados[numero-1];
   }
   
   
@@ -41,13 +40,13 @@ let imagensDados = [
   //adiciona dado
   
   export function adicionaDado(tabuleiro, coluna, valor){
-    let linha = 0;
     // while(tabuleiro[coluna, linha] != 0 && linha < 3){
     //   linha++;
     // }
     for(let i = 0; i < 3; i++){
-      if(tabuleiro[coluna][linha] === 0){
-        tabuleiro[coluna][linha] = valor;
+      if(tabuleiro[coluna][i] === 0){
+        tabuleiro[coluna][i] = valor;
+        console.log(tabuleiro);
         return true;
       }
     }
@@ -86,8 +85,9 @@ let imagensDados = [
   //imprime a soma
   
   export function imprimeSoma(coluna, impSoma){
-    let soma = soma(coluna);
-    impSoma.textContent = soma;
+    let som = soma(coluna);
+    console.log(impSoma + " " + som);
+    impSoma.textContent = som;
   }
   
   
@@ -110,15 +110,17 @@ let imagensDados = [
   
   //retorna tabuleiro
   
-  export function retornaTabuleiro(tabuleiro){
-    // for(let i = 0; i < 3; i++){
-    //   for(let j = 0; j < 3; j++){
-    //     let d = tabuleiro[i][j].content;
-    //     if(d != 0){
-    //       tabuleiro[i][j].src = imagensDados[d];
-    //     }
-    //   }
-    // } gg
+  export function retornaTabuleiro(tabuleiro, colunas){
+     for(let i = 0; i < 3; i++){
+       for(let j = 0; j < 3; j++){
+         let k = i * 3 + j;
+         if(colunas[i][j] !== 0){
+           tabuleiro[k].src = imagensDados[colunas[i][j]-1];
+         } else {
+            tabuleiro[k].src = "";
+         }
+       }
+     }
   }
   
   
@@ -137,7 +139,6 @@ let imagensDados = [
   
   
   //vencedor
-  
   export function vencedor(tabs, tabBot, tabPlayer){
     let player = 0;
     let bot = 0;
