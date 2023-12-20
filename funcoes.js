@@ -4,25 +4,26 @@
 //imagens dos dados
 
 let imagensDados = [
-    'dados/dado1.png',
-    'dados/dado2.png',
-    'dados/dado3.png',
-    'dados/dado4.png',
-    'dados/dado5.png',
-    'dados/dado6.png'
+    './dados/dado1.png',
+    './dados/dado2.png',
+    './dados/dado3.png',
+    './dados/dado4.png',
+    './dados/dado5.png',
+    './dados/dado6.png'
   ]
   
   
   //rola dado
   
   export function rolaDado(){
-    return Math.floor(Math.random * 6) + 1;
+    return Math.floor(Math.random() * 6);
   }
   
   
   //img dado
   
   export function imgDado(numero){
+    console.log(imagensDados[numero]);
     return imagensDados[numero];
   }
   
@@ -32,7 +33,7 @@ let imagensDados = [
   export function novoDado(proxDado){
     let valorDado = rolaDado();
     let dadoimg = valorDado - 1;
-    proxDado.src = imgDado(dadoimg);
+    // proxDado.src = imgDado(dadoimg);
     return valorDado;
   }
   
@@ -41,14 +42,20 @@ let imagensDados = [
   
   export function adicionaDado(tabuleiro, coluna, valor){
     let linha = 0;
-    while(tabuleiro[coluna, linha] != 0 && linha < 3){
-      linha++;
+    // while(tabuleiro[coluna, linha] != 0 && linha < 3){
+    //   linha++;
+    // }
+    for(let i = 0; i < 3; i++){
+      if(tabuleiro[coluna][linha] === 0){
+        tabuleiro[coluna][linha] = valor;
+        return true;
+      }
     }
-    if(linha <= 2 && linha >= 0){
-      tabuleiro[coluna, linha] = valor;
-    }
-    console.log("Coluna cheia!");
-    return false;
+    // if(linha <= 2 && linha >= 0){
+    //   tabuleiro[coluna, linha] = valor;
+    // }
+    // console.log("Coluna cheia!");
+    // return false;
   }
   
   
@@ -104,14 +111,14 @@ let imagensDados = [
   //retorna tabuleiro
   
   export function retornaTabuleiro(tabuleiro){
-    for(let i = 0; i < 3; i++){
-      for(let j = 0; j < 3; j++){
-        let d = tabuleiro[i][j].content;
-        if(d != 0){
-          tabuleiro[i][j].src = imagensDados[d];
-        }
-      }
-    }
+    // for(let i = 0; i < 3; i++){
+    //   for(let j = 0; j < 3; j++){
+    //     let d = tabuleiro[i][j].content;
+    //     if(d != 0){
+    //       tabuleiro[i][j].src = imagensDados[d];
+    //     }
+    //   }
+    // } gg
   }
   
   

@@ -1,17 +1,17 @@
 //main.js
 
-import{
-    rolaDado,
-    imgDado,
-    novoDado,
-    adicionaDado,
-    numeroRepete,
-    soma,
-    imprimeSoma,
-    limpaNumeroDeColuna,
-    retornaTabuleiro,
-    terminaJogo,
-    vencedor   
+import {
+  rolaDado,
+  imgDado,
+  novoDado,
+  adicionaDado,
+  numeroRepete,
+  soma,
+  imprimeSoma,
+  limpaNumeroDeColuna,
+  retornaTabuleiro,
+  terminaJogo,
+  vencedor   
 } from './funcoes.js';
 
 // Variáveis para representar o estado do jogo
@@ -19,6 +19,12 @@ let jogadorAtual = 'Player';
 let proxDado = document.querySelector('#proxDadoSec p');
 let tabuleiroBot = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 let tabuleiroPlayer = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+
+let imagemDado = document.querySelector('#imagemDado');
+let dado = rolaDado();
+console.log(dado);
+let linkImg = imgDado(dado);
+imagemDado.innerHTML = `<img class="dado_img" src = ${linkImg} />`;
 
 //reinicia o jogo
 
@@ -43,15 +49,22 @@ function atualizarInterface() {
     document.getElementById('valoresPlayerCol2').textContent = soma(tabuleiroPlayer[1]);
     document.getElementById('valoresPlayerCol3').textContent = soma(tabuleiroPlayer[2]);
   
-    proxDado.textContent = novoDado();
+    // proxDado.textContent = novoDado();
     document.getElementById('nomePlayer').textContent = jogadorAtual;
 }
 
 //jogar e troca de play para bot
 
 function jogar(colunaSelecionada) {
-    const valorDado = parseInt(proxDado.textContent);
-  
+    // const valorDado = parseInt(proxDado.textContent);
+    let tabuleiroAtual;
+    let valorDado = dado + 1;
+    if(jogadorAtual === 'Player'){
+      tabuleiroAtual = tabuleiroPlayer;
+    }
+    else{
+      tabuleiroAtual = tabuleiroBot;
+    }
     if (adicionaDado(tabuleiroAtual, colunaSelecionada, valorDado)) {
       limpaNumeroDeColuna(tabuleiroAtual, colunaSelecionada, valorDado);
       imprimeSoma(tabuleiroAtual[colunaSelecionada], document.getElementById(`valores${jogadorAtual}Col${colunaSelecionada + 1}`));
