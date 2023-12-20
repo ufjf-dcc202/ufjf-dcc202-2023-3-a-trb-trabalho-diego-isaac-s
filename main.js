@@ -83,7 +83,6 @@ function jogarBot(){
   atualizarInterface();
   if(terminaJogo(tabuleiroBot)){
     vencedor(imgFinal, tabuleiroBot, tabuleiroPlayer);
-    return;
   }
   dado = rolaDado();
   let linkImg = imgDado(dado);
